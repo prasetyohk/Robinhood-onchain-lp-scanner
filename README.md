@@ -160,10 +160,10 @@ Built with passion by **Prasetyo HK**
 Contributions are appreciated:
 
 * **EVM (Ethereum, Base, Arbitrum, Monad, etc.):**  
-  `0xFCDD187D32cFaecD8B07638BD6004fA2bF6838C6`
+  `0xbfcba220bc538af067fd74e74ae59a9eb1b94bf6`
 * **Solana:**  
-  `2zyBHgVYNp5WnKUK25WsdsQbsMzkj8Kzw2wDePWAnGZYS`
+  `Ae2BrzfsSsRekrX17kAMd2NM69jupVPeheRETsmXPDFh`
 * **Sui:**  
-  `0xfac84087048bf82f4f99c7704ee0cf9b1386c064b8ea845ab6baf65d1153eb09`
+  `0xab8e9a1a3e191e2db9d967004e993b0d1aafeb1dcc23615843713a7c7b56b0d1`
 * **Bitcoin:**  
-  `bc1qulgaaddxhl9qz5jcs4wu5tx5j3g9ng3lfd4cl0`
+  `bc1q390kc993fw8jx5l876vth7jcw4j99e30kppq7j`
