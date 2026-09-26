@@ -1,101 +1,131 @@
-# Robinhood LP Lens
+# UniLP Lens Multichain
 
 <p align="center">
-  <img src="assets/header.png" alt="Robinhood LP Lens Header Banner" width="100%" />
+  <img src="assets/header.png" alt="UniLP Lens Multichain Header Banner" width="100%" />
 </p>
 
 <p align="center">
-  <strong>On-Chain Position Intelligence for Robinhood Chain & Uniswap V3 / V4</strong><br>
-  <em>Read-only browser scanner to track NFT liquidity positions, owner wallets, pool metadata, and transfer history.</em>
+  <strong>Universal On-Chain Position Intelligence for Uniswap V3 & V4 across 22+ EVM Networks</strong><br>
+  <em>Read-only high-performance dashboard to track NFT liquidity positions, owner wallets, pool metadata, and burned transfer history.</em>
 </p>
 
 <p align="center">
   <a href="#-bahasa-indonesia">🇮🇩 Bahasa Indonesia</a> • 
   <a href="#-english">🇬🇧 English</a> • 
+  <a href="#-multichain-support-matrix-22-networks">🌐 Multichain Matrix</a> • 
   <a href="#-tampilan-aplikasi--ui-preview">📸 UI Preview</a> • 
-  <a href="#-support--donations">☕ Support & Donations</a>
+  <a href="#-author--credits">💎 Author & Credits</a> • 
+  <a href="#-support--donations">☕ Support</a>
 </p>
 
 ---
 
 ## 📸 Tampilan Aplikasi / UI Preview
 
-| Bahasa Indonesia (`ID`) | English (`EN`) |
-| :---: | :---: |
-| <img src="assets/header.png" alt="Header Indonesia" width="100%" /> | <img src="assets/header_en.png" alt="Header English" width="100%" /> |
-
 <p align="center">
-  <em>Hasil Scan Lengkap (Full Local Launch View):</em><br>
-  <img src="assets/local_launch.png" alt="Local Launch Full Preview" width="100%" />
+  <em>Modern 1-Viewport Dashboard Layout (Sidebar Controls + Internal Scrollable Grid):</em><br>
+  <img src="assets/local_launch.png" alt="UniLP Lens Full Dashboard View" width="100%" />
 </p>
+
+---
+
+## 🌐 Multichain Support Matrix (22+ Networks)
+
+UniLP Lens mendukung **22 jaringan blockchain EVM** secara langsung dengan preset RPC, Chain ID, dan smart contract PositionManager untuk Uniswap V3 maupun V4:
+
+| Network | Chain ID | Uniswap Ver. | Official PositionManager Address | Explorer |
+| :--- | :---: | :---: | :--- | :--- |
+| **Robinhood Chain** | `4663` | V3 / V4 | `0x58daec3116aae6D93017bAAea7749052E8a04fA7` (V4)<br>`0x73991a25c818bf1f1128deaab1492d45638DE0D3` (V3) | [Explorer](https://explorer.mainnet.chain.robinhood.com) |
+| **Ethereum Mainnet** | `1` | V3 / V4 | `0xC36442b4a4522E871399CD717aBDD847Ab11FE88` (V3)<br>`0xbD216513d74C8cf14cf4747E6AaA6420FF64ee9e` (V4) | [Etherscan](https://etherscan.io) |
+| **Base** | `8453` | V3 / V4 | `0x03a520b32C04BF3bEEf7BEb72E919cf822Ed34f1` (V3)<br>`0x7C40c3a61b4A5A30598816c17e33555Ec9BE39d5` (V4) | [Basescan](https://basescan.org) |
+| **Arbitrum One** | `42161` | V3 / V4 | `0xC36442b4a4522E871399CD717aBDD847Ab11FE88` (V3)<br>`0x360E68faCcca8cA495c1B759Fd9EEe466db9FB32` (V4) | [Arbiscan](https://arbiscan.io) |
+| **OP Mainnet** | `10` | V3 / V4 | `0xC36442b4a4522E871399CD717aBDD847Ab11FE88` (V3)<br>`0x360E68faCcca8cA495c1B759Fd9EEe466db9FB32` (V4) | [Optimistic](https://optimistic.etherscan.io) |
+| **Polygon PoS** | `137` | V3 / V4 | `0xC36442b4a4522E871399CD717aBDD847Ab11FE88` (V3)<br>`0x360E68faCcca8cA495c1B759Fd9EEe466db9FB32` (V4) | [Polygonscan](https://polygonscan.com) |
+| **BNB Chain** | `56` | V3 / V4 | `0x7b8A01B39D58278b5DE7e48c8449c9f4F5170613` (V3)<br>`0x360E68faCcca8cA495c1B759Fd9EEe466db9FB32` (V4) | [BscScan](https://bscscan.com) |
+| **Avalanche C-Chain** | `43114` | V3 | `0x655C406EBFa14EE2006250925e54ec43AD184f8B` | [Snowtrace](https://snowtrace.io) |
+| **Celo** | `42220` | V3 | `0x3d79EdAaBC0EaB6F08ED885C05Fc0B014290D95A` | [Celoscan](https://celoscan.io) |
+| **Blast** | `81457` | V3 | `0xB210EB856285A52A183e8b0a1A26e857Fe4F0b3F` | [Blastscan](https://blastscan.io) |
+| **zkSync Era** | `324` | V3 | `0x94833299c85b85e05a8166946ce235541ba3c78a` | [Era Explorer](https://era.zksync.network) |
+| **Linea** | `59144` | V3 | `0x48524e8e9db4f257bf3089d71dc0155b40d7c7fa` | [Lineascan](https://lineascan.build) |
+| **World Chain** | `480` | V3 / V4 | `0xC36442b4a4522E871399CD717aBDD847Ab11FE88` (V3) | [Worldscan](https://worldscan.org) |
+| **Zora** | `7777777` | V3 | `0x03a520b32C04BF3bEEf7BEb72E919cf822Ed34f1` | [Zora Explorer](https://explorer.zora.energy) |
+| **Soneium** | `1868` | V3 / V4 | `0xC36442b4a4522E871399CD717aBDD847Ab11FE88` (V3)<br>`0x360E68faCcca8cA495c1B759Fd9EEe466db9FB32` (V4) | [Soneium Explorer](https://soneium.blockscout.com) |
+| **Unichain** | `130` | V3 / V4 | `0xC36442b4a4522E871399CD717aBDD847Ab11FE88` (V3)<br>`0x360E68faCcca8cA495c1B759Fd9EEe466db9FB32` (V4) | [Uniscan](https://uniscan.xyz) |
+| **Ink** | `57073` | V3 / V4 | `0xC36442b4a4522E871399CD717aBDD847Ab11FE88` (V3)<br>`0x360E68faCcca8cA495c1B759Fd9EEe466db9FB32` (V4) | [Ink Explorer](https://explorer.inkonchain.com) |
+| **X Layer** | `196` | V3 | `0xC36442b4a4522E871399CD717aBDD847Ab11FE88` | [OKLink](https://www.oklink.com/xlayer) |
+| **Arc (Circle)** | `5042` | V3 | `0x6049c9a0e26405C0985f9E3685C87d0aE917f82B` | [Arcscan](https://arcscan.io) |
+| **Tempo** | `4217` | V4 | `0x3fc79444f8eacc1894775493ff3fa41f1e35ce11` | [Tempo Explore](https://explore.tempo.xyz) |
+| **Monad (Testnet)** | `10143` | V4 | `0x3Bb14E3D0Cd50aBe3EdACa06d06c29C78676C31A` | [Monad Explorer](https://testnet.monadexplorer.com) |
+| **MegaETH (Testnet)** | `6343` | V3 | `0xC36442b4a4522E871399CD717aBDD847Ab11FE88` | [MegaScan](https://mega.etherscan.io) |
 
 ---
 
 ## 🇮🇩 Bahasa Indonesia
 
-### 📌 Ringkasan
+### 📌 Ringkasan Proyek
 
-**Robinhood LP Lens** adalah alat pelacak posisi likuiditas (LP NFT) on-chain berbasis web untuk jaringan Robinhood Chain. Aplikasi ini membaca data langsung dari blockchain melalui RPC untuk mengidentifikasi wallet pemilik posisi, status likuiditas (`OPEN` atau `CLOSED`), pasangan token, fee tier, dan jejak transfer NFT bahkan saat posisi sudah diburn atau ditutup.
+**UniLP Lens Multichain** adalah dashboard intelligence on-chain modern untuk melacak posisi likuiditas NFT (LP) protokol Uniswap V3 dan Uniswap V4. Aplikasi ini dirancang dalam layout **1-viewport dashboard tanpa scroll window**, menggabungkan sidebar kontrol interaktif dengan panel hasil visual yang kaya informasi.
 
-Aplikasi ini sudah dilengkapi dengan **fitur bilingual (Bahasa Indonesia & English)** dengan tombol switch `ID / EN` di bar navigasi atas yang dapat dipilih secara instan.
+Aplikasi ini dapat membaca langsung data blockchain melalui node RPC publik/private atau API indexer resmi Uniswap untuk mengidentifikasi pemilik posisi saat ini, status aktif (*in-range* / *out-of-range*), fee tier, rasio pool, dan jejak transfer NFT bahkan saat posisi telah ditutup (*burned*).
 
-### ✨ Fitur Utama
+---
 
-- **Dukungan Dwi-Bahasa (Bilingual ID / EN):** Pilihan bahasa instan langsung dari tombol header dan preferensi tersimpan di browser.
-- **Deteksi Pemilik (Owner Discovery):** Menemukan current owner dari satu atau banyak NFT PositionManager secara otomatis.
-- **Status Posisi Real-time:** Membaca status posisi apakah masih aktif (`OPEN`) atau sudah ditarik/diburn (`CLOSED`).
-- **Data Pool Lengkap:** Menampilkan token pair (currency 0 & currency 1), liquidity, dan fee tier langsung dari smart contract.
-- **Pelacakan Posisi Ditutup (Burned/Closed):** Melacak `last holder` melalui event `Transfer` jika `ownerOf` sudah tidak dapat dipanggil karena NFT telah diburn.
-- **Filter Wallet Spesifik:** Memfilter hasil scan untuk wallet address tertentu.
-- **Refresh Deployed (Auto-Discovery):** Memindai block terbaru untuk mendeteksi event pencetakan (*mint*) posisi baru secara otomatis tanpa perlu input manual.
-- **100% Client-Side & Aman:** Membaca data langsung via RPC node tanpa menyimpan atau mengirim private key / data pengguna ke server.
+### ✨ Fitur-Fitur Terbaru (Upgrade Rombakan)
+
+1. **Universal Input & Parser URL Uniswap Otomatis:**
+   - Anda dapat menempelkan (*paste*) langsung URL posisi dari aplikasi Uniswap (contoh: `https://app.uniswap.org/positions/v3/base/1051512` atau `.../v4/robinhood/1446513`).
+   - Sistem otomatis mendeteksi jaringan, versi protokol (V3/V4), dan ID token, lalu menampilkan tombol **Terapkan (Apply)** 1-klik.
+   - Tetap mendukung input token ID manual (satu per baris atau dipisahkan koma).
+
+2. **Dukungan Multichain 22+ Jaringan:**
+   - Pilihan chain preset instan: Robinhood Chain, Ethereum, Base, Arbitrum, Optimism, Polygon, BNB Chain, Avalanche, Celo, Blast, zkSync, Linea, World Chain, Zora, Soneium, Unichain, Ink, X Layer, Arc, Tempo, Monad, dan MegaETH.
+   - Auto-fill RPC, Chain ID, dan alamat smart contract PositionManager yang tepat.
+
+3. **Desain 1-Viewport Dashboard (No Page Scroll):**
+   - Tata letak terbagi menjadi **Sidebar Kiri** (input, chain selector, wallet filter, quick tags, riwayat scan, pengaturan RPC) dan **Panel Utama Kanan** (kartu metrik stats dan grid posisi yang memiliki internal scroll).
+   - Pengalaman pengguna jauh lebih cepat, rapi, dan mudah dioperasikan.
+
+4. **Deteksi Status Posisi & Rentang Tick Visual:**
+   - Menampilkan badge status berwarna dinamis:
+     - 🟢 **OPEN · IN RANGE**: Posisi aktif dengan likuiditas yang menghasilkan biaya swap.
+     - 🟡 **OPEN · OUT OF RANGE**: Posisi aktif namun harga pool berada di luar rentang tick.
+     - ⚪ **CLOSED · BURNED**: Posisi telah ditarik / diburn.
+     - 🔴 **ERROR**: Token tidak terdaftar pada kontrak.
+
+5. **Pelacakan Pemilik Terakhir Posisi Burned / Closed:**
+   - Ketika NFT posisi sudah diburn dan pemanggilan `ownerOf` gagal, scanner otomatis memindai event on-chain `Transfer(address,address,uint256)` untuk merekonstruksi wallet pemegang terakhir (*last holder*).
+
+6. **Resolver Nama Simbol Token ERC-20 Otomatis:**
+   - Membaca simbol token langsung dari blockchain (misal `USDC / WETH` atau `USDG / UBIK`) menggantikan alamat hash mentah, lengkap dengan cache lokal.
+
+7. **Riwayat Scan Lokal (Local History):**
+   - Riwayat scan otomatis tersimpan di browser (`localStorage`) sehingga ID atau link yang pernah dicari dapat dipanggil kembali dengan 1-klik tanpa perlu input ulang.
+
+8. **Live RPC Health & Ping Monitor:**
+   - Indikator latensi node (ms) dan nomor block terkini secara *real-time*.
+
+9. **Dukungan Dwi-Bahasa (Bilingual ID / EN):**
+   - Toggle instan `ID / EN` di header navigasi dengan kamus bahasa yang lengkap.
+
+10. **Akses Cepat Deep Link:**
+    - Tombol langsung menuju posisi di Uniswap App (`View on Uniswap ↗`) dan penjelajah blok explorer (`Explorer ↗`).
 
 ---
 
 ### 🚀 Cara Menjalankan Aplikasi di Windows
 
 #### 1. Cara Cepat (Rekomendasi)
-1. Pastikan [Node.js](https://nodejs.org/) sudah terinstal di komputer Anda.
-2. Klik ganda (**double-click**) file `Buka Scanner.bat`.
+1. Pastikan [Node.js](https://nodejs.org/) (versi 18+) sudah terinstal di komputer.
+2. Klik ganda (**double-click**) file **`Buka Scanner.bat`**.
 3. Browser akan otomatis terbuka di `http://localhost:4173`.
-4. Biarkan jendela PowerShell/Command Prompt tetap terbuka selama scanner digunakan.
-5. Tutup jendela PowerShell untuk menghentikan server.
 
-#### 2. Cara Manual (Melalui Terminal)
+#### 2. Cara Manual (Terminal)
 1. Buka terminal (PowerShell atau Command Prompt) di folder proyek.
 2. Jalankan perintah:
-   ```powershell
+   ```bash
    node server.js
    ```
-3. Buka browser dan akses: [http://localhost:4173](http://localhost:4173)
-
-> ⚠️ **Penting:** Jangan membuka `index.html` langsung dengan klik dua kali (file://). Server lokal `server.js` diperlukan agar browser dapat mengakses RPC dan API tanpa kendala CORS.
-
----
-
-### 📖 Panduan Penggunaan Langkah demi Langkah
-
-1. **Pilih Bahasa Tampilan:**
-   - Gunakan tombol switch bahasa **`ID / EN`** di pojok kanan atas untuk mengganti bahasa aplikasi secara instan.
-2. **Atur RPC & Contract Settings (Opsional):**
-   - Klik tombol **`RPC & contract settings (+)`** untuk membuka panel konfigurasi.
-   - Pilih protokol: **Uniswap V4** atau **Uniswap V3**.
-   - Default RPC Robinhood Chain: `https://rpc.mainnet.chain.robinhood.com`
-   - Default PositionManager V4: `0x58daec3116aae6D93017bAAea7749052E8a04fA7` *(Catatan: `0x8366...` adalah PoolManager, bukan PositionManager NFT)*.
-3. **Masukkan Position NFT ID:**
-   - Masukkan satu atau beberapa ID token NFT pada kotak teks (satu ID per baris atau pisahkan dengan koma).
-   - Atau klik tombol **`QUICK INPUT`** (misal `#1446513 USDG/UBIK`) untuk pengujian instan.
-4. **Filter Wallet (Opsional):**
-   - Jika ingin memeriksa apakah ID tersebut milik wallet tertentu, masukkan alamat wallet (`0x...`) pada kolom **Filter wallet**.
-   - Kosongkan kolom ini jika ingin menampilkan pemilik asli dari setiap NFT secara otomatis.
-5. **Jalankan Scan:**
-   - Klik tombol **`Scan positions ↗`**.
-   - Hasil akan muncul pada kartu hasil scan dengan indikator status:
-     - 🟢 **OPEN**: Posisi masih aktif dan memiliki pemilik.
-     - ⚪ **CLOSED**: Posisi telah diburn/ditutup, scanner akan menampilkan pemilik terakhir (*last holder*).
-6. **Gunakan Fitur "Refresh Deployed":**
-   - Klik tombol **`Refresh deployed ↻`** untuk memindai transaksi mint posisi LP terbaru pada rentang block (`refreshBlocks`).
-   - Token ID baru yang ditemukan akan otomatis ditambahkan ke daftar dan langsung dipindai.
+3. Buka browser dan kunjungi: [http://localhost:4173](http://localhost:4173)
 
 ---
 
@@ -103,105 +133,53 @@ Aplikasi ini sudah dilengkapi dengan **fitur bilingual (Bahasa Indonesia & Engli
 
 ### 📌 Overview
 
-**Robinhood LP Lens** is a read-only on-chain liquidity position (LP NFT) scanner built for Robinhood Chain. It communicates directly with blockchain RPC nodes to inspect position owners, liquidity status (`OPEN` or `CLOSED`), currency pairs, fee tiers, and historical transfer logs—even if the position NFT was previously burned or closed.
+**UniLP Lens Multichain** is a modern, high-performance on-chain intelligence dashboard designed to scan and track Uniswap V3 and Uniswap V4 NFT liquidity positions across 22+ blockchain networks.
 
-The app comes with native **bilingual support (Indonesian & English)** with an instant `ID / EN` toggle switch in the top header.
-
-### ✨ Key Features
-
-- **Bilingual Interface (ID / EN):** One-click language switcher in the header with persistent local preference.
-- **Owner Discovery:** Identifies the current holder of single or multiple PositionManager NFTs automatically.
-- **Real-Time Position Status:** Quickly reveals whether a position is active (`OPEN`) or redeemed/burned (`CLOSED`).
-- **Comprehensive Pool Data:** Displays token pairs (currency 0 & currency 1), liquidity depth, and fee tiers straight from on-chain contracts.
-- **Closed/Burned Tracking:** Reconstructs the last known holder via historical `Transfer` event logs when `ownerOf` reverts due to burned tokens.
-- **Wallet Filter:** Allows filtering search results against a specific target address.
-- **Refresh Deployed (Auto-Discovery):** Automatically scans recent blocks for newly minted position events and adds them to your inspection list.
-- **100% Client-Side & Secure:** Connects directly to RPC endpoints with zero telemetry or backend storage of user data.
+Engineered with a **single-viewport desktop layout (zero window scrolling)**, it pairs a comprehensive sidebar control panel with a responsive, internally scrollable position grid for seamless inspection.
 
 ---
 
-### 🚀 Running the Application on Windows
+### ✨ Key Upgrades & Features
 
-#### 1. Quick Launch (Recommended)
-1. Ensure [Node.js](https://nodejs.org/) is installed on your machine.
-2. Double-click **`Buka Scanner.bat`**.
-3. Your default browser will launch automatically at `http://localhost:4173`.
-4. Keep the terminal window open while using the scanner.
-5. Close the terminal window when you wish to stop the server.
-
-#### 2. Manual Launch (Via Terminal)
-1. Open PowerShell or Command Prompt inside the project folder.
-2. Start the local server:
-   ```powershell
-   node server.js
-   ```
-3. Open your browser and navigate to: [http://localhost:4173](http://localhost:4173)
-
-> ⚠️ **Note:** Do not open `index.html` directly via double-clicking in file explorer. The local server is required to proxy and handle RPC/API requests without browser CORS restrictions.
+- **Universal Input & Instant Uniswap URL Parser:** Paste any Uniswap URL (`https://app.uniswap.org/positions/v3/base/12345`) or enter raw token IDs. The parser instantly identifies the chain, protocol version, and token ID.
+- **22+ EVM Networks Supported:** Pre-configured presets for Ethereum, Base, Robinhood Chain, Arbitrum, Optimism, Polygon, BNB, Avalanche, Celo, Blast, zkSync, Linea, World Chain, Zora, Soneium, Unichain, Ink, X Layer, Arc, Tempo, Monad, and MegaETH.
+- **Single-Viewport Layout:** No cumbersome whole-page scrolling. Left sidebar hosts all inputs and configs; right panel delivers fluid internal scrolling.
+- **Rich Status Badges & Tick Ranges:** Instant visual indicators for `OPEN · IN RANGE`, `OPEN · OUT OF RANGE`, and `CLOSED · BURNED`.
+- **Closed / Burned Position Recovery:** Automatically queries on-chain `Transfer` logs to determine the final owner before the token was burned.
+- **Real-Time ERC-20 Token Resolution:** Queries contract symbols (`USDC`, `WETH`, `USDG`, `UBIK`) with persistent in-memory caching.
+- **Local Scan History:** In-browser history allows 1-click re-scanning of recent searches.
+- **Live RPC Health Indicator:** Shows real-time network block height and ping latency (ms).
+- **1-Click Bulk Actions:** Copy all discovered owners, filter results in real time, and shortcut keys (`Ctrl + Enter`).
 
 ---
 
-### 📖 Step-by-Step User Guide
+## 💎 Author & Credits
 
-1. **Select Interface Language:**
-   - Use the **`ID / EN`** switcher at the top right to swap the interface language instantly.
-2. **Configure RPC & Contract Settings (Optional):**
-   - Click the **`RPC & contract settings (+)`** expander.
-   - Select protocol: **Uniswap V4** or **Uniswap V3**.
-   - Default Robinhood Chain RPC: `https://rpc.mainnet.chain.robinhood.com`
-   - Default V4 PositionManager: `0x58daec3116aae6D93017bAAea7749052E8a04fA7` *(Note: `0x8366...` is the PoolManager contract, not the NFT PositionManager)*.
-3. **Enter Position NFT IDs:**
-   - Input one or more position token IDs into the text area (one per line or separated by commas).
-   - Alternatively, click any **`QUICK INPUT`** tag (e.g., `#1446513 USDG/UBIK`) for instant testing.
-4. **Set Wallet Filter (Optional):**
-   - If you want to check if positions belong to a specific address, enter the address (`0x...`) in the **Filter wallet** input.
-   - Leave it empty to automatically discover and display whoever owns each NFT.
-5. **Scan Positions:**
-   - Click **`Scan positions ↗`**.
-   - Review each card in the results grid:
-     - 🟢 **OPEN**: Active position with confirmed on-chain owner and liquidity.
-     - ⚪ **CLOSED**: Burned/closed position; the scanner resolves the last known holder from event logs.
-6. **Discover Newly Deployed Positions:**
-   - Click **`Refresh deployed ↻`** to search the specified block range for recently minted NFT positions.
-   - Newly discovered token IDs will automatically be populated and scanned.
+Built with passion by **Prasetyo HK**
 
----
-
-
-
-## 🔒 Keamanan & Batasan / Security & Disclaimers
-
-- **Read-Only:** Aplikasi ini 100% read-only. Tidak ada transaksi yang dikirim dan tidak ada biaya gas.
-- **Private Key:** Jangan pernah memasukkan private key, seed phrase, atau kredensial rahasia apa pun.
-- **RPC Reliability:** Hasil pembacaan bergantung pada kestabilan node RPC dan ketersediaan log event on-chain.
-- **Privacy:** Semua input diproses di browser Anda secara lokal.
-
----
-
-## 📁 Struktur File / File Structure
-
-| File / Folder | Fungsi / Description |
-| --- | --- |
-| `assets/` | Folder gambar & aset preview banner untuk GitHub / Screenshot assets |
-| `index.html` | Struktur antarmuka scanner web dengan tombol bahasa / UI structure with lang switcher |
-| `styles.css` | Desain tema gelap, font, & styling responsif / Styling & layout |
-| `app.js` | Logika RPC, event filter, & sistem terjemahan i18n / Core blockchain & i18n logic |
-| `server.js` | Server HTTP lokal & API proxy untuk browser / Local HTTP dev server |
-| `Buka Scanner.bat` | Shortcut Windows 1-klik untuk menjalankan server / 1-click Windows launcher |
-| `README.md` | Dokumentasi lengkap dwi-bahasa / Bilingual documentation |
+- **X (Twitter):** [@prasetyohk](https://x.com/prasetyohk)
+- **GitHub:** [@prasetyohk](https://github.com/prasetyohk)
+- **Repository:** [Uniswap_LP_Tracer](https://github.com/prasetyohk/Uniswap_LP_Tracer)
 
 ---
 
 ## ☕ Support & Donations
 
-If this project helped your workflow, contributions are always appreciated:
+If this project helps your trading, liquidity management, or on-chain research, donations are warmly appreciated:
 
-* **EVM**:  
+* **EVM (Ethereum, Base, Arbitrum, Robinhood, etc.):**  
   `0xFCDD187D32cFaecD8B07638BD6004fA2bF6838C6`
-* **Solana**:  
+* **Solana:**  
   `2zyBHgVYNp5WnKUK25WsdsQbsMzkj8Kzw2wDePWAnGZYS`
-* **Sui**:  
+* **Sui:**  
   `0xfac84087048bf82f4f99c7704ee0cf9b1386c064b8ea845ab6baf65d1153eb09`
-* **Bitcoin**:  
+* **Bitcoin:**  
   `bc1qulgaaddxhl9qz5jcs4wu5tx5j3g9ng3lfd4cl0`
 
+---
+
+## 🔒 Security & Disclaimers
+
+- **100% Read-Only:** This tool never requests private keys, signatures, or gas transactions.
+- **Client-Side Privacy:** All scans and URL parsing occur directly inside your browser.
+- **RPC Resiliency:** Includes a local `/api/rpc-proxy` endpoint to guarantee zero CORS failures across any public EVM node.
