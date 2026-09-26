@@ -4,18 +4,19 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>UniLP Lens — Multichain Uniswap V3 & V4 Position Intelligence</title>
-  <meta name="description" content="Universal on-chain liquidity position scanner for Uniswap V3 and V4 across 22+ networks including Robinhood Chain, Ethereum, Base, Arbitrum, Monad, Tempo, and MegaETH.">
+  <meta name="description" content="Universal on-chain liquidity position scanner for Uniswap V3 and V4 across 22+ networks including Monad, MegaETH, Arc, Robinhood, Base, Ethereum, and Arbitrum.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body class="dark-theme">
   <!-- Toast notification system -->
   <div id="toastContainer" class="toast-container" aria-live="polite"></div>
 
+  <!-- Main App Shell (Centered Modern Crypto Frame) -->
   <div class="app-layout">
-    <!-- Topbar -->
+    <!-- Topbar Navigation -->
     <header class="topbar">
       <div class="topbar-left">
         <button id="sidebarToggle" class="mobile-toggle" aria-label="Toggle Navigation Sidebar" type="button">
@@ -30,38 +31,39 @@
         </div>
       </div>
 
-      <div class="topbar-center">
+      <!-- Center Nav Pills (Inspired by the Reference Image) -->
+      <nav class="topbar-nav" aria-label="Main Navigation">
+        <button type="button" class="nav-pill active" id="navOverview">Overview</button>
+        <button type="button" class="nav-pill" id="navPositions">Positions</button>
+        <button type="button" class="nav-pill" id="navHistory">History</button>
+      </nav>
+
+      <div class="topbar-right">
+        <!-- Live Network & Latency Pill -->
         <div class="network-badge" id="activeNetworkPill" title="Click to view network details">
           <span class="ping-dot" id="networkPingDot"></span>
           <span class="network-name" id="networkPillName">Robinhood Chain</span>
           <span class="chain-id-tag" id="networkPillChainId">#4663</span>
           <span class="network-latency" id="networkPingMs">48ms</span>
         </div>
-      </div>
 
-      <div class="topbar-right">
-        <!-- Indexer / Direct Mode Indicator -->
-        <div class="engine-badge" id="engineModeBadge" title="Uniswap Indexer + On-Chain Fallback Mode">
-          <span class="engine-icon">⚡</span>
-          <span id="engineModeText">Smart Hybrid</span>
-        </div>
-
-        <!-- Language Switcher -->
+        <!-- Bilingual Switcher (ID / EN) -->
         <div class="lang-switch" role="group" aria-label="Language Switcher">
           <button type="button" class="lang-btn active" id="langId" data-lang="id" title="Bahasa Indonesia">ID</button>
           <span class="lang-divider">/</span>
           <button type="button" class="lang-btn" id="langEn" data-lang="en" title="English">EN</button>
         </div>
 
-        <a href="https://github.com/prasetyohk/Uniswap_LP_Tracer" target="_blank" rel="noopener noreferrer" class="github-btn" title="GitHub Repository">
+        <!-- GitHub Repository Button -->
+        <a href="https://github.com/prasetyohk/Uniswap_LP_Tracer" target="_blank" rel="noopener noreferrer" class="icon-round-btn" title="GitHub Repository">
           <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
         </a>
       </div>
     </header>
 
-    <!-- Main Workspace -->
+    <!-- Main Workspace (1-Viewport Split) -->
     <div class="workspace">
-      <!-- Sidebar / Config & Input Panel -->
+      <!-- Left Sidebar: Controls & Input -->
       <aside class="sidebar" id="appSidebar">
         <div class="sidebar-inner">
 
@@ -78,7 +80,7 @@
             <!-- URL Parser Detection Banner -->
             <div id="urlParserAlert" class="parser-banner" hidden>
               <div class="parser-content">
-                <span class="parser-icon">✨</span>
+                <span class="parser-icon">⚡</span>
                 <div class="parser-details">
                   <strong data-i18n="urlDetectedStrong">URL Uniswap Terdeteksi!</strong>
                   <span id="urlParserDetails">Chain: Base · V3 · Token #12345</span>
@@ -88,14 +90,14 @@
             </div>
 
             <div class="input-wrapper">
-              <textarea id="tokenIds" rows="3" placeholder="https://app.uniswap.org/positions/v3/base/12345&#10;atau input ID: 1446513, 1444768" aria-label="Uniswap URL or NFT position IDs">1446513
+              <textarea id="tokenIds" rows="3" placeholder="Paste URL: https://app.uniswap.org/positions/v3/base/12345&#10;Atau ID: 1446513, 1444768" aria-label="Uniswap URL or NFT position IDs">1446513
 1444768</textarea>
               <button type="button" id="clearInputBtn" class="clear-input-btn" title="Clear input">✕</button>
             </div>
 
             <!-- Quick Demo Tags -->
             <div class="quick-tags-container">
-              <span class="quick-label" data-i18n="quickLabel">CONTOH CEPAT:</span>
+              <span class="quick-label" data-i18n="quickLabel">PRESET CEPAT:</span>
               <div class="tags-list">
                 <button type="button" class="tag-chip" data-chain="robinhood" data-protocol="v4" data-token="1446513">RH #1446513</button>
                 <button type="button" class="tag-chip" data-chain="robinhood" data-protocol="v4" data-token="1444768">RH #1444768</button>
@@ -120,12 +122,12 @@
               <label for="chainSelect" data-i18n="selectChainLabel">Jaringan Blockchain</label>
               <div class="select-wrapper">
                 <select id="chainSelect" class="custom-select">
-                  <optgroup label="🌟 Featured & Custom">
-                    <option value="robinhood" selected>Robinhood Chain (Chain 4663)</option>
-                    <option value="arc">Arc (Circle) (Chain 5042)</option>
+                  <optgroup label="🌟 Featured & High-Speed Networks">
+                    <option value="monad" selected>Monad Mainnet (Chain 143)</option>
+                    <option value="megaeth">MegaETH Mainnet (Chain 4326)</option>
+                    <option value="arc">Arc Mainnet (Chain 5042)</option>
                     <option value="tempo">Tempo (Chain 4217)</option>
-                    <option value="monad">Monad Testnet (Chain 10143)</option>
-                    <option value="megaeth">MegaETH Testnet (Chain 6343)</option>
+                    <option value="robinhood">Robinhood Chain (Chain 4663)</option>
                   </optgroup>
                   <optgroup label="⚡ Major Layer 2 & Rollups">
                     <option value="base">Base (Chain 8453)</option>
@@ -141,7 +143,7 @@
                     <option value="zora">Zora (Chain 7777777)</option>
                     <option value="xlayer">X Layer (Chain 196)</option>
                   </optgroup>
-                  <optgroup label="🌐 Layer 1 & EVM Chains">
+                  <optgroup label="🌐 Layer 1 & EVM Ecosystem">
                     <option value="ethereum">Ethereum Mainnet (Chain 1)</option>
                     <option value="polygon">Polygon PoS (Chain 137)</option>
                     <option value="bnb">BNB Chain (Chain 56)</option>
@@ -168,16 +170,12 @@
               <input type="text" id="walletFilter" class="custom-input mono-font" placeholder="0x... hanya tampilkan jika milik wallet ini" spellcheck="false">
             </div>
 
-            <!-- Action Buttons -->
-            <div class="action-buttons-group">
-              <button id="scanButton" class="btn-primary" type="button">
+            <!-- Single Focused Scan Action Button (No Clutter) -->
+            <div class="action-single-group">
+              <button id="scanButton" class="btn-scan-main" type="button">
                 <span class="btn-icon">⚡</span>
                 <span id="scanButtonText" data-i18n="scanButtonText">Scan Posisi</span>
                 <span class="btn-keyhint">Ctrl+↵</span>
-              </button>
-              <button id="refreshButton" class="btn-secondary" type="button" title="Pindai block terbaru untuk mint posisi baru">
-                <span class="btn-icon">↻</span>
-                <span id="refreshButtonText" data-i18n="refreshButtonText">Auto Mint</span>
               </button>
             </div>
           </div>
@@ -205,15 +203,9 @@
                 <input type="text" id="positionManager" class="custom-input mono-font" spellcheck="false">
               </div>
 
-              <div class="field-row">
-                <div class="field-group flex-1">
-                  <label for="fromBlock" data-i18n="blockStartLabel">From Block</label>
-                  <input type="number" id="fromBlock" class="custom-input mono-font" value="0" min="0">
-                </div>
-                <div class="field-group flex-1">
-                  <label for="refreshBlocks" data-i18n="refreshBlocksLabel">Window Blocks</label>
-                  <input type="number" id="refreshBlocks" class="custom-input mono-font" value="200000" min="100">
-                </div>
+              <div class="field-group">
+                <label for="fromBlock" data-i18n="blockStartLabel">From Block (Scan Event Transfer)</label>
+                <input type="number" id="fromBlock" class="custom-input mono-font" value="0" min="0">
               </div>
 
               <p class="accordion-hint" id="contractHintText" data-i18n-html="settingsHint">
@@ -236,7 +228,7 @@
             </div>
           </div>
 
-          <!-- Section: Author Credit -->
+          <!-- Section: Author Credit (Prasetyo HK) -->
           <div class="credit-card">
             <div class="credit-top">
               <span class="credit-badge-icon">💎</span>
@@ -260,23 +252,23 @@
         </div>
       </aside>
 
-      <!-- Main Results Dashboard Panel -->
+      <!-- Right Main Dashboard (Internal Scroll Only) -->
       <main class="dashboard-viewport" id="mainDashboard">
-        <!-- Top Stats Metrics Ribbon -->
+        <!-- Top Stats Metrics Ribbon (Matching the Reference Image) -->
         <section class="metrics-ribbon">
           <div class="metric-card">
             <span class="metric-label" data-i18n="metricTotal">Total Dipindai</span>
             <div class="metric-value-row">
               <span class="metric-value" id="statTotal">0</span>
-              <span class="metric-badge-unit">NFTs</span>
+              <span class="metric-badge-unit">NFT Positions</span>
             </div>
           </div>
 
           <div class="metric-card">
-            <span class="metric-label" data-i18n="metricActive">Posisi Aktif (Open)</span>
+            <span class="metric-label" data-i18n="metricActive">Posisi Aktif (In-Range)</span>
             <div class="metric-value-row">
-              <span class="metric-value color-green" id="statActive">0</span>
-              <span class="status-indicator-dot dot-green"></span>
+              <span class="metric-value color-lime" id="statActive">0</span>
+              <span class="status-indicator-dot dot-lime"></span>
             </div>
           </div>
 
@@ -289,9 +281,9 @@
           </div>
 
           <div class="metric-card">
-            <span class="metric-label" data-i18n="metricNetwork">Status Jaringan</span>
+            <span class="metric-label" data-i18n="metricNetwork">Jaringan & Status</span>
             <div class="metric-value-row">
-              <span class="metric-value-sub" id="statNetwork">Robinhood (4663)</span>
+              <span class="metric-value-sub" id="statNetwork">Monad Mainnet (143)</span>
               <span class="metric-badge-status" id="statBlock">Block #—</span>
             </div>
           </div>
@@ -310,7 +302,7 @@
               <div class="filter-input-wrap">
                 <input type="text" id="resultsFilter" class="toolbar-search-input" placeholder="Cari token, wallet..." data-i18n-placeholder="filterPlaceholder">
               </div>
-              <button type="button" id="copyAllOwnersBtn" class="toolbar-btn" title="Copy all discovered owner addresses" hidden>
+              <button type="button" id="copyAllOwnersBtn" class="toolbar-pill-btn" title="Copy all discovered owner addresses" hidden>
                 <span data-i18n="copyAllOwners">Salin Semua Wallet</span>
               </button>
             </div>
@@ -327,12 +319,13 @@
                 <span class="empty-glyph">◈</span>
               </div>
               <strong class="empty-title" data-i18n="emptyStateStrong">Siap memindai posisi likuiditas</strong>
-              <p class="empty-desc" data-i18n="emptyStateSpan">Pilih chain, masukkan nomor token NFT atau paste URL posisi Uniswap pada panel sebelah kiri untuk memulai.</p>
+              <p class="empty-desc" data-i18n="emptyStateSpan">Pilih chain (Monad, MegaETH, Arc, Base, dll), masukkan nomor token NFT atau paste URL Uniswap pada panel sebelah kiri untuk memulai.</p>
               <div class="empty-guide-tags">
-                <span class="guide-tag">✓ 22+ EVM Networks</span>
+                <span class="guide-tag">✓ Monad Mainnet (143)</span>
+                <span class="guide-tag">✓ MegaETH (4326)</span>
+                <span class="guide-tag">✓ Arc (5042)</span>
                 <span class="guide-tag">✓ Uniswap V3 & V4</span>
-                <span class="guide-tag">✓ Closed / Burned Tracking</span>
-                <span class="guide-tag">✓ Real-time ERC20 Resolver</span>
+                <span class="guide-tag">✓ Burned LP Tracking</span>
               </div>
             </div>
           </div>

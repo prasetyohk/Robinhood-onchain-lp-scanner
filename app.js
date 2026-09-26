@@ -31,22 +31,33 @@ const ERC20_ABI = [
 // Multichain Configurations (22 Networks)
 // ============================================================================
 const NETWORKS = {
-  robinhood: {
-    name: 'Robinhood Chain',
-    chainId: 4663,
-    rpc: 'https://rpc.mainnet.chain.robinhood.com',
-    explorer: 'https://explorer.mainnet.chain.robinhood.com',
-    v4Manager: '0x58daec3116aae6D93017bAAea7749052E8a04fA7',
-    v3Manager: '0x73991a25c818bf1f1128deaab1492d45638DE0D3',
+  monad: {
+    name: 'Monad Mainnet',
+    chainId: 143,
+    rpc: 'https://rpc.monad.xyz',
+    explorer: 'https://monadscan.com',
+    v4Manager: '0x3Bb14E3D0Cd50aBe3EdACa06d06c29C78676C31A',
+    v3Manager: '0xC36442b4a4522E871399CD717aBDD847Ab11FE88',
     defaultProtocol: 'v4',
-    uniswapSlug: 'robinhood',
+    uniswapSlug: 'monad',
+    nativeCurrency: 'MON'
+  },
+  megaeth: {
+    name: 'MegaETH',
+    chainId: 4326,
+    rpc: 'https://mainnet.megaeth.com/rpc',
+    explorer: 'https://mega.etherscan.io',
+    v3Manager: '0xC36442b4a4522E871399CD717aBDD847Ab11FE88',
+    v4Manager: '',
+    defaultProtocol: 'v3',
+    uniswapSlug: 'megaeth',
     nativeCurrency: 'ETH'
   },
   arc: {
-    name: 'Arc (Circle)',
+    name: 'Arc Mainnet',
     chainId: 5042,
     rpc: 'https://rpc.mainnet.arc.io',
-    explorer: 'https://arcscan.io',
+    explorer: 'https://explorer.arc.io',
     v3Manager: '0x6049c9a0e26405C0985f9E3685C87d0aE917f82B',
     v4Manager: '',
     defaultProtocol: 'v3',
@@ -64,26 +75,15 @@ const NETWORKS = {
     uniswapSlug: 'tempo',
     nativeCurrency: 'USD'
   },
-  monad: {
-    name: 'Monad (Testnet)',
-    chainId: 10143,
-    rpc: 'https://testnet-rpc.monad.xyz',
-    explorer: 'https://testnet.monadexplorer.com',
-    v4Manager: '0x3Bb14E3D0Cd50aBe3EdACa06d06c29C78676C31A',
-    v3Manager: '0xC36442b4a4522E871399CD717aBDD847Ab11FE88',
+  robinhood: {
+    name: 'Robinhood Chain',
+    chainId: 4663,
+    rpc: 'https://rpc.mainnet.chain.robinhood.com',
+    explorer: 'https://explorer.mainnet.chain.robinhood.com',
+    v4Manager: '0x58daec3116aae6D93017bAAea7749052E8a04fA7',
+    v3Manager: '0x73991a25c818bf1f1128deaab1492d45638DE0D3',
     defaultProtocol: 'v4',
-    uniswapSlug: 'monad',
-    nativeCurrency: 'MON'
-  },
-  megaeth: {
-    name: 'MegaETH (Testnet)',
-    chainId: 6343,
-    rpc: 'https://carrot.megaeth.com/rpc',
-    explorer: 'https://mega.etherscan.io',
-    v3Manager: '0xC36442b4a4522E871399CD717aBDD847Ab11FE88',
-    v4Manager: '',
-    defaultProtocol: 'v3',
-    uniswapSlug: 'megaeth',
+    uniswapSlug: 'robinhood',
     nativeCurrency: 'ETH'
   },
   base: {
@@ -277,6 +277,12 @@ const NETWORKS = {
 
 // Map slug variants to network keys
 const SLUG_TO_NETWORK = {
+  monad: 'monad',
+  megaeth: 'megaeth',
+  arc: 'arc',
+  tempo: 'tempo',
+  robinhood: 'robinhood',
+  rh: 'robinhood',
   mainnet: 'ethereum',
   eth: 'ethereum',
   ethereum: 'ethereum',
@@ -303,13 +309,7 @@ const SLUG_TO_NETWORK = {
   soneium: 'soneium',
   unichain: 'unichain',
   ink: 'ink',
-  xlayer: 'xlayer',
-  robinhood: 'robinhood',
-  rh: 'robinhood',
-  arc: 'arc',
-  tempo: 'tempo',
-  monad: 'monad',
-  megaeth: 'megaeth'
+  xlayer: 'xlayer'
 };
 
 // Known common token addresses for instant resolution
@@ -326,7 +326,6 @@ const KNOWN_TOKENS = {
   '0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2': 'WETH'
 };
 
-// In-memory token symbols cache
 const tokenSymbolCache = { ...KNOWN_TOKENS };
 
 // ============================================================================
@@ -338,7 +337,7 @@ const I18N = {
     inputSectionDesc: 'Paste URL Uniswap atau masukkan ID token.',
     urlDetectedStrong: 'URL Uniswap Terdeteksi!',
     applyBtn: 'Terapkan',
-    quickLabel: 'CONTOH CEPAT:',
+    quickLabel: 'PRESET CEPAT:',
     networkSectionTitle: 'Pilih Chain & Protokol',
     networkSectionDesc: '22+ Jaringan EVM didukung penuh.',
     selectChainLabel: 'Jaringan Blockchain',
@@ -346,28 +345,25 @@ const I18N = {
     protoAuto: 'Auto',
     walletFilterLabel: 'Filter Wallet Pemilik (Opsional)',
     scanButtonText: 'Scan Posisi',
-    scanningText: 'Scanning...',
-    refreshButtonText: 'Auto Mint',
-    refreshingText: 'Memindai...',
+    scanningText: 'Memindai Posisi...',
     settingsTitle: 'Pengaturan RPC & Kontrak',
     rpcLabel: 'RPC Endpoint URL',
     managerLabel: 'PositionManager Contract',
-    blockStartLabel: 'From Block',
-    refreshBlocksLabel: 'Window Blocks',
+    blockStartLabel: 'From Block (Scan Event Transfer)',
     settingsHint: 'Preset otomatis diisi sesuai chain yang dipilih. Anda dapat mengganti RPC dengan custom node (Alchemy/Infura/QuickNode).',
     historyTitle: 'Riwayat Scan',
     clearHistory: 'Hapus',
     historyEmpty: 'Belum ada riwayat scan.',
     builtWith: 'Built with passion by',
     metricTotal: 'Total Dipindai',
-    metricActive: 'Posisi Aktif (Open)',
+    metricActive: 'Posisi Aktif (In-Range)',
     metricClosed: 'Ditutup / Diburn',
-    metricNetwork: 'Status Jaringan',
+    metricNetwork: 'Jaringan & Status',
     resultTitleEmpty: 'Belum ada scan',
     filterPlaceholder: 'Cari token, wallet...',
     copyAllOwners: 'Salin Semua Wallet',
     emptyStateStrong: 'Siap memindai posisi likuiditas',
-    emptyStateSpan: 'Pilih chain, masukkan nomor token NFT atau paste URL posisi Uniswap pada panel sebelah kiri untuk memulai.',
+    emptyStateSpan: 'Pilih chain (Monad, MegaETH, Arc, Base, dll), masukkan nomor token NFT atau paste URL Uniswap pada panel sebelah kiri untuk memulai.',
     footerText1: 'UNILP LENS MULTICHAIN × ON-CHAIN LIQUIDITY TRACER',
     footerText2: 'DATA DIBACA LANGSUNG DARI BLOCKCHAIN (RPC & INDEXER)',
     toastCopied: 'Wallet berhasil disalin!',
@@ -377,19 +373,19 @@ const I18N = {
     errInvalidTokenId: 'Position ID harus berupa angka atau URL Uniswap yang valid.',
     errInvalidWallet: 'Filter wallet bukan alamat EVM yang valid.',
     positionsFound: (n) => `${n} posisi ditemukan`,
-    statusOpen: 'OPEN · IN RANGE',
-    statusOutOfRange: 'OPEN · OUT OF RANGE',
-    statusClosed: 'CLOSED · BURNED',
+    statusOpen: 'IN RANGE',
+    statusOutOfRange: 'OUT OF RANGE',
+    statusClosed: 'CLOSED',
     statusError: 'ERROR',
-    ownerContract: 'PEMILIK SAAT INI (ON-CHAIN)',
-    ownerTransfer: 'PEMILIK TERAKHIR (LOG TRANSFER)',
-    ownerIndexer: 'PEMILIK (UNISWAP INDEXER)',
+    ownerContract: 'PEMILIK SAAT INI',
+    ownerTransfer: 'PEMILIK TERAKHIR (TRANSFER LOG)',
+    ownerIndexer: 'UNISWAP INDEXER',
     liquidity: 'Likuiditas',
     feeTier: 'Fee Tier',
     tokenPair: 'Pasangan Token',
     lastTransfer: 'Transfer Terakhir',
     tickRange: 'Rentang Tick',
-    viewUniswap: 'Buka di Uniswap',
+    viewUniswap: 'Uniswap',
     viewExplorer: 'Explorer'
   },
   en: {
@@ -405,28 +401,25 @@ const I18N = {
     protoAuto: 'Auto',
     walletFilterLabel: 'Filter Owner Wallet (Optional)',
     scanButtonText: 'Scan Positions',
-    scanningText: 'Scanning...',
-    refreshButtonText: 'Auto Mint',
-    refreshingText: 'Scanning...',
+    scanningText: 'Scanning Positions...',
     settingsTitle: 'RPC & Contract Settings',
     rpcLabel: 'RPC Endpoint URL',
     managerLabel: 'PositionManager Contract',
-    blockStartLabel: 'From Block',
-    refreshBlocksLabel: 'Window Blocks',
+    blockStartLabel: 'From Block (Scan Event Transfer)',
     settingsHint: 'Presets are auto-filled for the selected chain. Override with custom RPC (Alchemy/Infura/QuickNode) anytime.',
     historyTitle: 'Scan History',
     clearHistory: 'Clear',
     historyEmpty: 'No recent scan history.',
     builtWith: 'Built with passion by',
     metricTotal: 'Total Scanned',
-    metricActive: 'Active (Open)',
+    metricActive: 'Active (In-Range)',
     metricClosed: 'Closed / Burned',
     metricNetwork: 'Network Status',
     resultTitleEmpty: 'No scans yet',
     filterPlaceholder: 'Filter tokens, wallets...',
     copyAllOwners: 'Copy All Wallets',
     emptyStateStrong: 'Ready to track liquidity positions',
-    emptyStateSpan: 'Select a chain, enter NFT position IDs or paste a Uniswap position URL on the left panel to begin.',
+    emptyStateSpan: 'Select a chain (Monad, MegaETH, Arc, Base, etc), enter NFT position IDs or paste a Uniswap position URL on the left panel to begin.',
     footerText1: 'UNILP LENS MULTICHAIN × ON-CHAIN LIQUIDITY TRACER',
     footerText2: 'DATA FETCHED DIRECTLY FROM BLOCKCHAIN (RPC & INDEXER)',
     toastCopied: 'Wallet address copied!',
@@ -436,19 +429,19 @@ const I18N = {
     errInvalidTokenId: 'Position IDs must be numbers or a valid Uniswap URL.',
     errInvalidWallet: 'Wallet filter is not a valid EVM address.',
     positionsFound: (n) => `${n} position${n === 1 ? '' : 's'} found`,
-    statusOpen: 'OPEN · IN RANGE',
-    statusOutOfRange: 'OPEN · OUT OF RANGE',
-    statusClosed: 'CLOSED · BURNED',
+    statusOpen: 'IN RANGE',
+    statusOutOfRange: 'OUT OF RANGE',
+    statusClosed: 'CLOSED',
     statusError: 'ERROR',
     ownerContract: 'CURRENT ON-CHAIN OWNER',
     ownerTransfer: 'LAST HOLDER FROM TRANSFER LOG',
-    ownerIndexer: 'OWNER FROM UNISWAP INDEXER',
+    ownerIndexer: 'UNISWAP INDEXER',
     liquidity: 'Liquidity',
     feeTier: 'Fee Tier',
     tokenPair: 'Token Pair',
     lastTransfer: 'Last Transfer',
     tickRange: 'Tick Range',
-    viewUniswap: 'View on Uniswap',
+    viewUniswap: 'Uniswap',
     viewExplorer: 'Explorer'
   }
 };
@@ -457,8 +450,8 @@ const I18N = {
 // State Management
 // ============================================================================
 let currentLang = localStorage.getItem('unilp_lang') || 'id';
-let currentProtocol = 'v4'; // 'v4' | 'v3' | 'auto'
-let activeNetworkKey = 'robinhood';
+let currentProtocol = 'v4';
+let activeNetworkKey = 'monad';
 let lastScannedData = [];
 let pendingParsedUrl = null;
 
@@ -467,9 +460,7 @@ const t = () => I18N[currentLang];
 const shortAddr = (val) => val && val.length > 10 ? `${val.slice(0, 6)}...${val.slice(-4)}` : (val || '—');
 const validAddress = (val) => /^0x[a-fA-F0-9]{40}$/.test(val);
 
-// ============================================================================
 // Toast Notification
-// ============================================================================
 function showToast(message, type = 'info') {
   const container = $('toastContainer');
   if (!container) return;
@@ -485,9 +476,7 @@ function showToast(message, type = 'info') {
   }, 2800);
 }
 
-// ============================================================================
-// Language Management
-// ============================================================================
+// Language Switcher
 function setLanguage(lang) {
   currentLang = lang;
   localStorage.setItem('unilp_lang', lang);
@@ -515,9 +504,7 @@ function setLanguage(lang) {
 $('langId').addEventListener('click', () => setLanguage('id'));
 $('langEn').addEventListener('click', () => setLanguage('en'));
 
-// ============================================================================
-// Network & Protocol Sync
-// ============================================================================
+// Network UI update
 function updateNetworkUI() {
   const net = NETWORKS[activeNetworkKey];
   if (!net) return;
@@ -526,7 +513,6 @@ function updateNetworkUI() {
   $('networkPillChainId').textContent = `#${net.chainId}`;
   $('rpcUrl').value = net.rpc;
 
-  // Set position manager depending on protocol
   const targetManager = (currentProtocol === 'v4' && net.v4Manager) 
     ? net.v4Manager 
     : (net.v3Manager || net.v4Manager || '');
@@ -534,7 +520,6 @@ function updateNetworkUI() {
   $('positionManager').value = targetManager;
   $('statNetwork').textContent = `${net.name} (${net.chainId})`;
 
-  // Trigger non-blocking ping
   pingRpcLatency(net.rpc);
 }
 
@@ -568,7 +553,7 @@ $('protoV4').addEventListener('click', () => setProtocol('v4'));
 $('protoV3').addEventListener('click', () => setProtocol('v3'));
 $('protoAuto').addEventListener('click', () => setProtocol('auto'));
 
-// Ping RPC latency check
+// Latency Ping
 async function pingRpcLatency(url) {
   const dot = $('networkPingDot');
   const pingLabel = $('networkPingMs');
@@ -582,17 +567,17 @@ async function pingRpcLatency(url) {
     const duration = Math.round(performance.now() - start);
     pingLabel.textContent = `${duration}ms`;
     $('statBlock').textContent = `Block #${blockNum.toLocaleString()}`;
-    if (duration < 250) {
+    if (duration < 300) {
       dot.className = 'ping-dot';
       pingLabel.style.color = 'var(--neon-lime)';
     } else {
       dot.className = 'ping-dot warning';
-      pingLabel.style.color = 'var(--amber)';
+      pingLabel.style.color = 'var(--status-warning)';
     }
   } catch (_) {
     pingLabel.textContent = 'err';
     dot.className = 'ping-dot error';
-    pingLabel.style.color = 'var(--crimson)';
+    pingLabel.style.color = 'var(--status-error)';
   }
 }
 
@@ -600,13 +585,10 @@ $('pingRpcBtn').addEventListener('click', () => {
   pingRpcLatency($('rpcUrl').value.trim());
 });
 
-// ============================================================================
-// Uniswap URL Parser Engine
-// ============================================================================
+// URL Parser
 function detectUniswapUrl(text) {
   if (!text) return null;
   const clean = text.trim();
-  // Match app.uniswap.org/positions/(v3|v4)/[chain]/[tokenId]
   const posRegex = /(?:https?:\/\/)?(?:app\.)?uniswap\.org\/positions\/(v3|v4)\/([a-zA-Z0-9_-]+)\/(\d+)/i;
   const match = clean.match(posRegex);
   if (match) {
@@ -617,7 +599,6 @@ function detectUniswapUrl(text) {
     };
   }
 
-  // Match /explore/pools/[chain]/[address]
   const poolRegex = /(?:https?:\/\/)?(?:app\.)?uniswap\.org\/explore\/pools\/([a-zA-Z0-9_-]+)\/(0x[a-fA-F0-9]{40})/i;
   const poolMatch = clean.match(poolRegex);
   if (poolMatch) {
@@ -663,7 +644,6 @@ $('applyUrlBtn').addEventListener('click', () => {
   $('tokenIds').value = pendingParsedUrl.tokenId;
   $('urlParserAlert').hidden = true;
   showToast(`Switched to ${NETWORKS[activeNetworkKey].name} (${pendingParsedUrl.protocol.toUpperCase()})`, 'success');
-  // Auto trigger scan
   scan();
 });
 
@@ -673,7 +653,7 @@ $('clearInputBtn').addEventListener('click', () => {
   pendingParsedUrl = null;
 });
 
-// Quick demo tags click handler
+// Quick preset chips
 document.querySelectorAll('.tag-chip').forEach((chip) => {
   chip.addEventListener('click', () => {
     const chain = chip.dataset.chain;
@@ -691,9 +671,29 @@ document.querySelectorAll('.tag-chip').forEach((chip) => {
   });
 });
 
-// ============================================================================
-// ERC-20 Token Symbol Resolver
-// ============================================================================
+// Top Nav Pills
+$('navOverview').addEventListener('click', () => {
+  $('navOverview').classList.add('active');
+  $('navPositions').classList.remove('active');
+  $('navHistory').classList.remove('active');
+  document.querySelector('.metrics-ribbon')?.scrollIntoView({ behavior: 'smooth' });
+});
+
+$('navPositions').addEventListener('click', () => {
+  $('navPositions').classList.add('active');
+  $('navOverview').classList.remove('active');
+  $('navHistory').classList.remove('active');
+  $('tokenIds').focus();
+});
+
+$('navHistory').addEventListener('click', () => {
+  $('navHistory').classList.add('active');
+  $('navOverview').classList.remove('active');
+  $('navPositions').classList.remove('active');
+  $('historyCard')?.scrollIntoView({ behavior: 'smooth' });
+});
+
+// ERC-20 Symbol Resolver
 async function resolveTokenSymbol(provider, tokenAddress) {
   if (!tokenAddress || !validAddress(tokenAddress)) return '—';
   const lower = tokenAddress.toLowerCase();
@@ -709,9 +709,7 @@ async function resolveTokenSymbol(provider, tokenAddress) {
       tokenSymbolCache[lower] = sym;
       return sym;
     }
-  } catch (_) {
-    // fallback to truncated address
-  }
+  } catch (_) {}
   return shortAddr(tokenAddress);
 }
 
@@ -720,16 +718,14 @@ function formatFeeTier(fee) {
   if (!fee || fee === '—') return '';
   const num = Number(fee);
   if (isNaN(num)) return fee;
-  if (num === 100) return '0.01%';
-  if (num === 500) return '0.05%';
-  if (num === 3000) return '0.30%';
-  if (num === 10000) return '1.00%';
-  return `${(num / 10000).toFixed(2)}%`;
+  if (num === 100) return '0.01% Fee';
+  if (num === 500) return '0.05% Fee';
+  if (num === 3000) return '0.30% Fee';
+  if (num === 10000) return '1.00% Fee';
+  return `${(num / 10000).toFixed(2)}% Fee`;
 }
 
-// ============================================================================
-// Scan History System (localStorage)
-// ============================================================================
+// Local History
 function loadHistory() {
   try {
     const raw = localStorage.getItem('unilp_history_v2');
@@ -768,7 +764,7 @@ function saveHistoryItem(chain, protocol, tokenIds) {
     const now = new Date();
     const time = `${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}`;
     items.unshift({ chain, protocol, tokenIds, time });
-    items = items.slice(0, 8); // keep last 8
+    items = items.slice(0, 8);
     localStorage.setItem('unilp_history_v2', JSON.stringify(items));
     loadHistory();
   } catch (_) {}
@@ -779,9 +775,7 @@ $('clearHistoryBtn').addEventListener('click', () => {
   loadHistory();
 });
 
-// ============================================================================
-// Transfer Event Logs Resolver (For Burned / Closed NFTs)
-// ============================================================================
+// Transfer log search for burned NFTs
 async function findTransfers(provider, manager, tokenId, fromBlock) {
   const latest = await provider.getBlockNumber();
   const tokenTopic = ethers.zeroPadValue(ethers.toBeHex(tokenId), 32);
@@ -806,34 +800,7 @@ async function findTransfers(provider, manager, tokenId, fromBlock) {
   return events;
 }
 
-// Find newly minted positions within recent blocks
-async function findRecentlyMintedTokenIds(provider, managerAddress, blockWindow) {
-  const latest = await provider.getBlockNumber();
-  const fromBlock = Math.max(0, latest - blockWindow + 1);
-  const transferTopic = ethers.id('Transfer(address,address,uint256)');
-  const zeroTopic = ethers.zeroPadValue(ethers.ZeroAddress, 32);
-  const tokenIds = [];
-  const chunkSize = 15000;
-  for (let end = latest; end >= fromBlock; end -= chunkSize) {
-    const start = Math.max(fromBlock, end - chunkSize + 1);
-    try {
-      const logs = await provider.getLogs({
-        address: managerAddress,
-        topics: [transferTopic, zeroTopic, null, null],
-        fromBlock: start,
-        toBlock: end
-      });
-      tokenIds.push(...logs.map((log) => ethers.toBigInt(log.topics[3]).toString()));
-    } catch (_) {
-      break;
-    }
-  }
-  return [...new Set(tokenIds)].reverse();
-}
-
-// ============================================================================
 // Uniswap Indexer Client
-// ============================================================================
 async function getIndexedPosition(network, protocol, tokenId) {
   const chainIdParam = network.uniswapSlug ? network.uniswapSlug.toUpperCase() : 'ETHEREUM';
   const response = await fetch('/api/positions', {
@@ -851,9 +818,7 @@ async function getIndexedPosition(network, protocol, tokenId) {
   return payload.position;
 }
 
-// ============================================================================
-// UI Card Component
-// ============================================================================
+// Skeleton loading cards
 function renderSkeleton() {
   return [1, 2, 3].map(() => `
     <div class="skeleton-card">
@@ -865,9 +830,10 @@ function renderSkeleton() {
   `).join('');
 }
 
+// Render position card (Obsidian & Lime Theme)
 function renderCard(data) {
   const dict = t();
-  const net = NETWORKS[data.networkKey] || NETWORKS.ethereum;
+  const net = NETWORKS[data.networkKey] || NETWORKS.monad;
   
   if (data.error) {
     return `
@@ -879,14 +845,13 @@ function renderCard(data) {
           </div>
           <span class="status-pill error">${dict.statusError}</span>
         </div>
-        <div class="data-row" style="padding: 12px 0; color: var(--crimson);">
+        <div class="data-row" style="padding: 12px 0; color: var(--status-error);">
           <span>${data.error}</span>
         </div>
       </article>
     `;
   }
 
-  // Determine status pill
   let statusClass = 'open in-range';
   let statusText = dict.statusOpen;
   if (data.status === 'POSITION_STATUS_CLOSED' || data.liquidity === '0' || data.isClosed) {
@@ -897,16 +862,12 @@ function renderCard(data) {
     statusText = dict.statusOutOfRange;
   }
 
-  // Owner label
   let ownerSourceLabel = dict.ownerContract;
   if (data.ownerSource === 'transfer-history') ownerSourceLabel = dict.ownerTransfer;
   if (data.ownerSource === 'uniswap-indexer') ownerSourceLabel = dict.ownerIndexer;
 
-  // External links
   const uniswapUrl = `https://app.uniswap.org/positions/${data.protocol}/${net.uniswapSlug}/${data.tokenId}`;
   const explorerUrl = `${net.explorer}/address/${data.owner}`;
-
-  // Formatted fee
   const feeDisplay = formatFeeTier(data.fee);
 
   return `
@@ -969,11 +930,11 @@ function renderCard(data) {
       <div class="card-footer-actions">
         <a href="${uniswapUrl}" target="_blank" rel="noopener noreferrer" class="ext-link-btn" title="View in Uniswap App">
           <span>${dict.viewUniswap}</span>
-          <span>↗</span>
+          <span style="color: var(--neon-lime);">↗</span>
         </a>
         <a href="${explorerUrl}" target="_blank" rel="noopener noreferrer" class="ext-link-btn" title="View Owner on Explorer">
           <span>${dict.viewExplorer}</span>
-          <span>↗</span>
+          <span style="color: var(--neon-lime);">↗</span>
         </a>
       </div>
     </article>
@@ -1021,17 +982,14 @@ $('resultsFilter').addEventListener('input', (e) => {
   });
 });
 
-// ============================================================================
-// Core Multichain Scanner
-// ============================================================================
+// Core Scan Engine
 async function scan() {
   const dict = t();
-  const net = NETWORKS[activeNetworkKey] || NETWORKS.robinhood;
+  const net = NETWORKS[activeNetworkKey] || NETWORKS.monad;
   const rpc = $('rpcUrl').value.trim() || net.rpc;
   const managerAddress = $('positionManager').value.trim();
   const walletFilter = $('walletFilter').value.trim().toLowerCase();
 
-  // Validate
   if (!rpc || !managerAddress || !validAddress(managerAddress)) {
     showToast(dict.errValidRpcManager, 'error');
     return;
@@ -1041,7 +999,6 @@ async function scan() {
     return;
   }
 
-  // Parse input
   const rawInput = $('tokenIds').value;
   const detectedUrl = detectUniswapUrl(rawInput);
   let ids = [];
@@ -1056,13 +1013,11 @@ async function scan() {
     return;
   }
 
-  // Determine active protocol version
   let proto = currentProtocol;
   if (proto === 'auto') {
     proto = net.defaultProtocol || 'v3';
   }
 
-  // UI state updates
   $('scanButton').disabled = true;
   $('scanButtonText').textContent = dict.scanningText;
   $('results').innerHTML = renderSkeleton();
@@ -1070,14 +1025,12 @@ async function scan() {
 
   try {
     const provider = new ethers.JsonRpcProvider(rpc);
-    
-    // Save to local scan history
     saveHistoryItem(activeNetworkKey, proto, ids);
 
-    // Try Uniswap indexer first if supported network and protocol is V4
     let usedIndexer = false;
     let results = [];
 
+    // Try Uniswap indexer first for supported mainnets
     if (proto === 'v4' && (net.uniswapSlug === 'robinhood' || net.uniswapSlug === 'base' || net.uniswapSlug === 'ethereum')) {
       try {
         const indexerResults = await Promise.all(ids.map(async (tokenId) => {
@@ -1101,7 +1054,7 @@ async function scan() {
               block: 'Uniswap Indexer'
             };
           } catch (e) {
-            return null; // Fallback to on-chain RPC
+            return null;
           }
         }));
 
@@ -1109,12 +1062,10 @@ async function scan() {
           results = indexerResults.filter(Boolean);
           usedIndexer = true;
         }
-      } catch (_) {
-        // Fall back to RPC
-      }
+      } catch (_) {}
     }
 
-    // Direct On-Chain Contract Scan (Universal EVM Fallback)
+    // Direct On-Chain Contract Scan (Universal EVM Engine)
     if (!results.length) {
       const manager = new ethers.Contract(managerAddress, proto === 'v3' ? V3_ABI : V4_ABI, provider);
       const fromBlock = Number($('fromBlock').value || 0);
@@ -1123,17 +1074,13 @@ async function scan() {
         try {
           let owner = null;
           let ownerSource = 'contract';
-          let ownerErr = null;
 
-          // 1. Query ownerOf
           try {
             owner = await manager.ownerOf(tokenId);
           } catch (err) {
             ownerSource = 'transfer-history';
-            ownerErr = err;
           }
 
-          // 2. If burned, reconstruct owner from Transfer event logs
           let lastTransfer = null;
           if (!owner) {
             const transfers = await findTransfers(provider, manager, tokenId, fromBlock);
@@ -1146,15 +1093,13 @@ async function scan() {
           }
 
           if (!owner) {
-            throw new Error(`Position #${tokenId} is not registered or was never minted on ${net.name}.`);
+            throw new Error(`Position #${tokenId} is not registered on ${net.name}.`);
           }
 
-          // Filter by wallet if provided
           if (walletFilter && owner.toLowerCase() !== walletFilter) {
             return null;
           }
 
-          // 3. Extract Pool details
           let liquidity = '0';
           let currency0 = '—';
           let currency1 = '—';
@@ -1182,7 +1127,6 @@ async function scan() {
             } catch (_) {}
           }
 
-          // 4. Resolve token symbols asynchronously
           const [symbol0, symbol1] = await Promise.all([
             resolveTokenSymbol(provider, currency0),
             resolveTokenSymbol(provider, currency1)
@@ -1219,7 +1163,6 @@ async function scan() {
     const filtered = results.filter(Boolean);
     lastScannedData = filtered;
 
-    // Render results
     if (filtered.length) {
       $('results').innerHTML = filtered.map(renderCard).join('');
       $('copyAllOwnersBtn').hidden = false;
@@ -1233,14 +1176,12 @@ async function scan() {
       $('copyAllOwnersBtn').hidden = true;
     }
 
-    // Update stats ribbon
     const activeCount = filtered.filter((d) => !d.error && !d.isClosed).length;
     const closedCount = filtered.filter((d) => !d.error && d.isClosed).length;
     $('statTotal').textContent = filtered.length;
     $('statActive').textContent = activeCount;
     $('statClosed').textContent = closedCount;
 
-    // Update header meta
     $('resultTitle').textContent = dict.positionsFound(filtered.length);
     const nowStr = new Date().toLocaleTimeString(currentLang === 'id' ? 'id-ID' : 'en-US');
     $('scanMeta').textContent = `${nowStr} · ${net.name} (${net.chainId}) · ${usedIndexer ? 'Uniswap Indexer' : 'Direct RPC'}`;
@@ -1250,7 +1191,7 @@ async function scan() {
   } catch (error) {
     $('results').innerHTML = `
       <div class="empty-state">
-        <strong class="empty-title" style="color: var(--crimson);">Scan Gagal</strong>
+        <strong class="empty-title" style="color: var(--status-error);">Scan Gagal</strong>
         <span class="empty-desc">${error.shortMessage || error.message}</span>
       </div>
     `;
@@ -1261,49 +1202,7 @@ async function scan() {
   }
 }
 
-// Auto-Discovery: Refresh Deployed / New Mint
-async function refreshDeployed() {
-  const dict = t();
-  const net = NETWORKS[activeNetworkKey] || NETWORKS.robinhood;
-  const rpc = $('rpcUrl').value.trim() || net.rpc;
-  const managerAddress = $('positionManager').value.trim();
-  const blockWindow = Number($('refreshBlocks').value || 200000);
-
-  if (!rpc || !validAddress(managerAddress)) {
-    showToast(dict.errValidRpcManager, 'error');
-    return;
-  }
-
-  $('refreshButton').disabled = true;
-  $('refreshButtonText').textContent = dict.refreshingText;
-
-  try {
-    const provider = new ethers.JsonRpcProvider(rpc);
-    const discovered = await findRecentlyMintedTokenIds(provider, managerAddress, blockWindow);
-    const current = $('tokenIds').value.split(/[\s,]+/).map((s) => s.trim()).filter(Boolean);
-    const merged = [...new Set([...discovered, ...current])];
-    $('tokenIds').value = merged.join('\n');
-
-    if (!discovered.length) {
-      showToast(`Tidak ada posisi baru dalam ${blockWindow.toLocaleString()} block terakhir.`, 'info');
-      return;
-    }
-
-    showToast(`Ditemukan ${discovered.length} posisi baru! Memulai scan...`, 'success');
-    await scan();
-  } catch (err) {
-    showToast(err.shortMessage || err.message, 'error');
-  } finally {
-    $('refreshButton').disabled = false;
-    $('refreshButtonText').textContent = dict.refreshButtonText;
-  }
-}
-
-// Event Listeners
-$('scanButton').addEventListener('click', scan);
-$('refreshButton').addEventListener('click', refreshDeployed);
-
-// Global Keyboard Shortcut: Ctrl + Enter / Cmd + Enter to Scan
+// Global Keyboard Shortcut: Ctrl + Enter / Cmd + Enter
 document.addEventListener('keydown', (e) => {
   if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
     e.preventDefault();
@@ -1311,12 +1210,13 @@ document.addEventListener('keydown', (e) => {
   }
 });
 
+$('scanButton').addEventListener('click', scan);
+
 // Mobile Sidebar Toggle
 $('sidebarToggle').addEventListener('click', () => {
   $('appSidebar').classList.toggle('open');
 });
 
-// Close sidebar on outer click on mobile
 document.addEventListener('click', (e) => {
   const sidebar = $('appSidebar');
   const toggle = $('sidebarToggle');
@@ -1327,9 +1227,7 @@ document.addEventListener('click', (e) => {
   }
 });
 
-// ============================================================================
-// Initialization on page load
-// ============================================================================
+// Initialization
 document.addEventListener('DOMContentLoaded', () => {
   setLanguage(currentLang);
   updateNetworkUI();
