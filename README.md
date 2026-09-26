@@ -6,7 +6,7 @@
 
 <p align="center">
   <strong>Universal On-Chain Position Intelligence for Uniswap V3 & V4 across 22+ EVM Networks</strong><br>
-  <em>High-performance single-viewport dashboard in sleek Obsidian Black, Neon Lime (#bcfb00), and Pure White.</em>
+  <em>Next-generation single-viewport dashboard in Obsidian Black, Electric Neon Lime (#bcfb00), and Pure White.</em>
 </p>
 
 <p align="center">
@@ -23,8 +23,8 @@
 ## 📸 Tampilan Aplikasi / UI Preview
 
 <p align="center">
-  <em>Modern 1-Viewport Dashboard (Sidebar Controls + Internal Scrollable Grid):</em><br>
-  <img src="assets/local_launch.png" alt="UniLP Lens Full Dashboard View" width="100%" />
+  <em>Live 1-Viewport Dashboard (Sidebar Controls + Internal Scrollable Grid):</em><br>
+  <img src="assets/dashboard_preview.png" alt="UniLP Lens Live Dashboard Preview" width="100%" />
 </p>
 
 ---
@@ -64,7 +64,7 @@ UniLP Lens mendukung **22 jaringan blockchain EVM** secara langsung dengan konfi
 
 ### 📌 Ringkasan Proyek
 
-**UniLP Lens Multichain** adalah dashboard intelligence on-chain modern untuk melacak posisi likuiditas NFT (LP) protokol Uniswap V3 dan Uniswap V4. Aplikasi ini mengusung desain **1-viewport dashboard tanpa scroll window** dengan estetika **Obsidian Black, Neon Lime (#bcfb00), dan Pure White** yang terinspirasi dari dashboard crypto portfolio premium.
+**UniLP Lens Multichain** adalah dashboard intelligence on-chain modern untuk melacak posisi likuiditas NFT (LP) protokol Uniswap V3 dan Uniswap V4. Aplikasi ini mengusung desain **1-viewport dashboard tanpa scroll window** dengan estetika **Obsidian Black, Neon Lime (`#bcfb00`), dan Pure White** yang terinspirasi dari dashboard crypto portfolio premium.
 
 Aplikasi ini dapat membaca langsung data blockchain melalui node RPC publik/private atau API indexer resmi Uniswap untuk mengidentifikasi pemilik posisi saat ini, status aktif (*in-range* / *out-of-range*), fee tier, rasio pool, dan jejak transfer NFT bahkan saat posisi telah ditutup (*burned*).
 
